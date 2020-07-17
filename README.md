@@ -1,16 +1,38 @@
-# demo
+# EyeVideo
 
-A new Flutter project.
+这是一款使用Flutter开发的高仿开眼视频的短视频APP
 
-## Getting Started
+## 主要使用的技术点
 
-This project is a starting point for a Flutter application.
+* Dart扩展函数的使用
 
-A few resources to get you started if this is your first Flutter project:
+* Dio网络库优雅封装以及使用
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+* Bloc状态管理以及实现UI和逻辑分离
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* json_serializable的使用
+
+* ScreenRuler Flutter UI尺寸和字体大小的统一适配
+
+* 列表刷新和加载更多组件实现
+
+## 目前支持的平台有
+
+* Android
+
+* iOS
+
+* Mac Desktop
+
+* Linux Desktop
+
+* Web Chrome
+
+* Web Server
+
+## 运行效果
+
+* iOS
+[art/1.png](art/1.png)
+[art/2.png](art/2.png)
+[art/3.png](art/3.png)
