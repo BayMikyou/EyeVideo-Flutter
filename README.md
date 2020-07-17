@@ -34,6 +34,4 @@
 
 * iOS
 
-![art/1.png](art/1.png)
-![art/2.png](art/2.png)
-![art/3.png](art/3.png)
+![art1.png](art/art1.png)
