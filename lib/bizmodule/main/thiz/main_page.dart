@@ -4,6 +4,8 @@ import 'package:eye_video/bizmodule/main/category/repositories/mock/mock_categor
 import 'package:eye_video/bizmodule/main/selections/blocs/selection_bloc.dart';
 import 'package:eye_video/bizmodule/main/selections/respositories/mock/mock_selection_repository.dart';
 import 'package:eye_video/bizmodule/main/selections/selection_page.dart';
+import 'package:eye_video/bizmodule/main/thiz/blocs/main_bloc.dart';
+import 'package:eye_video/bizmodule/main/thiz/repositories/mock/mock_main_repository.dart';
 import 'package:eye_video/bizmodule/main/thiz/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,10 +24,13 @@ class MainPage extends StatelessWidget {
           title: buildTabBar(tabs),
           elevation: 2.0,
           actions: [
-            Icon(Icons.search, color: Color(0xff666666)),
+            Icon(Icons.search),
           ],
         ),
-        drawer: DrawerWidget(),
+        drawer: BlocProvider(
+          create: (ctx) => MainBloc(mainRepository: MockMainRepository()),
+          child: DrawerWidget(),
+        ),
         body: TabBarView(
           children: tabs.map((tab) {
             var index = tabs.indexOf(tab);
@@ -37,7 +42,8 @@ class MainPage extends StatelessWidget {
               );
             else if (index == 1)
               return BlocProvider(
-                create: (context) => CategoryBloc(categoryRepository: MockCategoryRepository()),
+                create: (context) =>
+                    CategoryBloc(categoryRepository: MockCategoryRepository()),
                 child: CategoryPage(),
               );
             else
