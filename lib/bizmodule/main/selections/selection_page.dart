@@ -5,15 +5,15 @@ import 'package:eye_video/bizmodule/main/selections/extension/ext_selection.dart
 import 'package:eye_video/bizmodule/main/selections/widgets/follow_Item.dart';
 import 'package:eye_video/bizmodule/main/selections/widgets/header_item.dart';
 import 'package:eye_video/bizmodule/main/selections/widgets/small_video_item.dart';
-import 'package:eye_video/framework/uikit/refresher/indicator/material/material_footer.dart';
-import 'package:eye_video/framework/uikit/refresher/indicator/material/material_header.dart';
-import 'package:eye_video/framework/uikit/refresher/pretty_refresher.dart';
 import 'package:eye_video/framework/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_easyrefresh/material_footer.dart';
+import 'package:flutter_easyrefresh/material_header.dart';
 
 class SelectionPage extends StatelessWidget {
-  final RefreshController _controller = RefreshController();
+  final EasyRefreshController _controller = EasyRefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class SelectionPage extends StatelessWidget {
           child: Text('数据请求失败'),
         );
       } else if (state is StateRequestSuccess) {
-        return PrettyRefresher(
+        return EasyRefresh(
           header: MaterialHeader(),
           footer: MaterialFooter(),
           enableControlFinishLoad: false,
@@ -49,13 +49,11 @@ class SelectionPage extends StatelessWidget {
               _controller.finishLoad(noMore: true);
               context.showSnackBar(msg: '已经到底了～');
             } else {
-              BlocProvider.of<SelectionBloc>(context)
-                  .add(EventRequest(isFirst: false, isRefresh: false));
+              BlocProvider.of<SelectionBloc>(context).add(EventRequest(isFirst: false, isRefresh: false));
             }
           },
           onRefresh: () async {
-            BlocProvider.of<SelectionBloc>(context)
-                .add(EventRequest(isFirst: false, isRefresh: true));
+            BlocProvider.of<SelectionBloc>(context).add(EventRequest(isFirst: false, isRefresh: true));
             _controller.resetLoadState();
           },
         );
