@@ -24,7 +24,7 @@ class HeaderItem extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   color: Color(0xff333333),
-                  fontWeight: FontWeight.bold,
+                  fontFamily: 'NotoSansHans-Medium',
                 ),
               ),
               Container(
@@ -36,6 +36,8 @@ class HeaderItem extends StatelessWidget {
                     '查看更多',
                     style: TextStyle(
                       fontSize: 12,
+                      fontFamily: 'NotoSansHans-Regular',
+                      color: Color(0xff666666),
                     ),
                   ),
                   borderSide: BorderSide(

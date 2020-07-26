@@ -1,6 +1,9 @@
 import 'package:eye_video/bizmodule/blocs.dart';
 import 'package:eye_video/bizmodule/main/category/category_page.dart';
 import 'package:eye_video/bizmodule/main/category/repositories/mock/mock_category_repository.dart';
+import 'package:eye_video/bizmodule/main/discovery/blocs/discovery_bloc.dart';
+import 'package:eye_video/bizmodule/main/discovery/discovery_page.dart';
+import 'package:eye_video/bizmodule/main/discovery/respositories/mock/mock_discovery_repository.dart';
 import 'package:eye_video/bizmodule/main/selections/blocs/selection_bloc.dart';
 import 'package:eye_video/bizmodule/main/selections/respositories/mock/mock_selection_repository.dart';
 import 'package:eye_video/bizmodule/main/selections/selection_page.dart';
@@ -16,7 +19,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tabs = ['精选', '分类', '发现', '社区'];
+    var tabs = ['精选', '发现', '分类', '社区'];
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
@@ -34,20 +37,40 @@ class MainPage extends StatelessWidget {
         body: TabBarView(
           children: tabs.map((tab) {
             var index = tabs.indexOf(tab);
-            if (index == 0)
-              return BlocProvider(
-                create: (ctx) => SelectionBloc(
-                    selectionRepository: MockSelectionRepository()),
-                child: SelectionPage(),
-              );
-            else if (index == 1)
-              return BlocProvider(
-                create: (context) =>
-                    CategoryBloc(categoryRepository: MockCategoryRepository()),
-                child: CategoryPage(),
-              );
-            else
-              return Center(child: Text(tab));
+            switch (index) {
+              case 0:
+                {
+                  return BlocProvider(
+                    create: (context) => SelectionBloc(
+                        selectionRepository: MockSelectionRepository()),
+                    child: SelectionPage(),
+                  );
+                }
+                break;
+              case 1:
+                {
+                  return BlocProvider(
+                    create: (context) => DiscoveryBloc(
+                        discoveryRepository: MockDiscoveryRepository()),
+                    child: DiscoveryPage(),
+                  );
+                }
+                break;
+              case 2:
+                {
+                  return BlocProvider(
+                    create: (context) => CategoryBloc(
+                        categoryRepository: MockCategoryRepository()),
+                    child: CategoryPage(),
+                  );
+                }
+                break;
+
+              default:
+                {
+                  return Center(child: Text(tab));
+                }
+            }
           }).toList(),
         ),
       ),

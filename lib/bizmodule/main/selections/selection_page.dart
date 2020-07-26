@@ -3,17 +3,17 @@ import 'package:eye_video/bizmodule/main/selections/blocs/selection_event.dart';
 import 'package:eye_video/bizmodule/main/selections/blocs/selection_state.dart';
 import 'package:eye_video/bizmodule/main/selections/extension/ext_selection.dart';
 import 'package:eye_video/bizmodule/main/selections/widgets/follow_Item.dart';
-import 'package:eye_video/bizmodule/main/selections/widgets/header_item.dart';
+import 'package:eye_video/bizmodule/bizwidget/header_item.dart';
 import 'package:eye_video/bizmodule/main/selections/widgets/small_video_item.dart';
 import 'package:eye_video/framework/extension/context_extension.dart';
+import 'package:eye_video/framework/uikit/refresher/indicator/material/material_footer.dart';
+import 'package:eye_video/framework/uikit/refresher/indicator/material/material_header.dart';
+import 'package:eye_video/framework/uikit/refresher/pretty_refresher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_easyrefresh/material_footer.dart';
-import 'package:flutter_easyrefresh/material_header.dart';
 
 class SelectionPage extends StatelessWidget {
-  final EasyRefreshController _controller = EasyRefreshController();
+  final RefreshController _controller = RefreshController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class SelectionPage extends StatelessWidget {
           child: Text('数据请求失败'),
         );
       } else if (state is StateRequestSuccess) {
-        return EasyRefresh(
+        return PrettyRefresher(
           header: MaterialHeader(),
           footer: MaterialFooter(),
           enableControlFinishLoad: false,

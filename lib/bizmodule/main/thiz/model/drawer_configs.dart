@@ -53,5 +53,11 @@ class DrawerConfig extends Equatable {
   Map<String, dynamic> toJson() => _$DrawerConfigToJson(this);
 
   @override
-  List<Object> get props => [isDivider, text, iconData, assetIcon, urlIcon];
+  List<Object> get props => [
+    isDivider,
+    text,
+    iconData,
+    assetIcon,
+    urlIcon
+  ];
 }

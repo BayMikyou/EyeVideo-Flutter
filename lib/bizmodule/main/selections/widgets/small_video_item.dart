@@ -1,4 +1,4 @@
-import 'package:eye_video/bizmodule/main/selections/widgets/video_body_item.dart';
+import 'package:eye_video/bizmodule/bizwidget/cover_image_item.dart';
 import 'package:flutter/material.dart';
 
 class SmallItemVideo extends StatelessWidget {
@@ -19,7 +19,7 @@ class SmallItemVideo extends StatelessWidget {
         spacing: 16,
         direction: Axis.horizontal,
         children: [
-          VideoBodyItem(
+          CoverImageItem(
             width: MediaQuery.of(context).size.width * 0.5,
             coverUrl: coverUrl,
             duration: duration,
@@ -34,7 +34,7 @@ class SmallItemVideo extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     color: Color(0xff333333),
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'NotoSansHans-Medium',
                   ),
                 ),
                 width: MediaQuery.of(context).size.width * 0.5 - 38,
