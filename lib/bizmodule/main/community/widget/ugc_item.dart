@@ -69,9 +69,11 @@ class UgcFollowItem extends StatelessWidget {
           children: content.tags
               .map((tag) => Container(
                     decoration: BoxDecoration(
-                        color: Color(0xfff0f0f0),
-                        borderRadius: BorderRadius.all(Radius.circular(15)),),
-                    padding: EdgeInsets.only(top: 2, bottom: 2, left: 10, right: 10),
+                      color: Color(0xfff0f0f0),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    padding:
+                        EdgeInsets.only(top: 2, bottom: 2, left: 10, right: 10),
                     child: Text(
                       tag.name,
                       style: TextStyle(
@@ -84,6 +86,65 @@ class UgcFollowItem extends StatelessWidget {
         ),
       );
       children.add(tagItems);
+    }
+
+    if (content.consumption != null) {
+      var consumptionItem = Padding(
+        padding: EdgeInsets.only(top: 10, left: 15),
+        child: Row(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/images/biz_app_icon_collection.png',
+                  width: 20,
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 3),
+                  child: Text("${content.consumption.realCollectionCount}"),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/biz_app_icon_reply.png',
+                    width: 20,
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 3),
+                    child: Text("${content.consumption.replyCount}"),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/biz_app_icon_share.png',
+                    width: 20,
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 3),
+                    child: Text("${content.consumption.shareCount}"),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+      children.add(consumptionItem);
     }
 
     return Container(
