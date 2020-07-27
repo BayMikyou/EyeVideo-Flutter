@@ -11,7 +11,7 @@ class PrettyHttp {
   static const String HEAD = 'head';
   static const String PATCH = 'patch';
 
-  static const String BASE_URL = "http://49.232.165.251:7300/mock/5dbb0d413591dc3cd6c3d75e/flutter_demo";
+  static const String BASE_URL = "http://baobab.kaiyanapp.com/";
 
   static LogInterceptor logInterceptor = LogInterceptor();
 

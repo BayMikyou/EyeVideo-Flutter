@@ -61,6 +61,7 @@ class FollowListHead extends StatelessWidget {
       title: tvTitle,
       subtitle: tvSubtitle,
       trailing: btnFollow,
+      enabled: false,
       onTap: () {},
     );
   }

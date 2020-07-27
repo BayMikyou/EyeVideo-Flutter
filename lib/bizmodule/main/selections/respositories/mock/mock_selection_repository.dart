@@ -13,7 +13,6 @@ class MockSelectionRepository extends SelectionRepository {
     }
     var resData = await PrettyHttp.get(
       "api/v5/index/tab/allRec",
-      baseUrl: 'http://baobab.kaiyanapp.com/',
       reqParams: reqParams,
     );
 

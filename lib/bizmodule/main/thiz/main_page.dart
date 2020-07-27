@@ -1,6 +1,9 @@
 import 'package:eye_video/bizmodule/blocs.dart';
 import 'package:eye_video/bizmodule/main/category/category_page.dart';
 import 'package:eye_video/bizmodule/main/category/repositories/mock/mock_category_repository.dart';
+import 'package:eye_video/bizmodule/main/community/blocs/community_bloc.dart';
+import 'package:eye_video/bizmodule/main/community/community_page.dart';
+import 'package:eye_video/bizmodule/main/community/respositories/mock/mock_community_repository.dart';
 import 'package:eye_video/bizmodule/main/discovery/blocs/discovery_bloc.dart';
 import 'package:eye_video/bizmodule/main/discovery/discovery_page.dart';
 import 'package:eye_video/bizmodule/main/discovery/respositories/mock/mock_discovery_repository.dart';
@@ -62,6 +65,16 @@ class MainPage extends StatelessWidget {
                     create: (context) => CategoryBloc(
                         categoryRepository: MockCategoryRepository()),
                     child: CategoryPage(),
+                  );
+                }
+                break;
+
+              case 3:
+                {
+                  return BlocProvider(
+                    create: (context) => CommunityBloc(
+                        communityRepository: MockCommunityRepository()),
+                    child: CommunityPage(),
                   );
                 }
                 break;

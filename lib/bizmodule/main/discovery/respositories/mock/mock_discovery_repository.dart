@@ -5,8 +5,7 @@ import 'package:eye_video/framework/network/pretty_http.dart';
 class MockDiscoveryRepository extends DiscoveryRepository {
   @override
   Future<DiscoveryModel> fetchDiscovery() async {
-    var resData = await PrettyHttp.get("api/v7/index/tab/discovery",
-        baseUrl: 'http://baobab.kaiyanapp.com/');
+    var resData = await PrettyHttp.get("api/v7/index/tab/discovery");
     return Future.value(DiscoveryModel.fromJson(resData));
   }
 }
