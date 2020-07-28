@@ -13,6 +13,7 @@ import 'package:eye_video/bizmodule/main/selections/selection_page.dart';
 import 'package:eye_video/bizmodule/main/thiz/blocs/main_bloc.dart';
 import 'package:eye_video/bizmodule/main/thiz/repositories/mock/mock_main_repository.dart';
 import 'package:eye_video/bizmodule/main/thiz/widgets/drawer_widget.dart';
+import 'package:eye_video/framework/extension/screen_ruler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,6 +23,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenRuler.init(context);
     var tabs = ['精选', '发现', '分类', '社区'];
     return DefaultTabController(
       length: tabs.length,

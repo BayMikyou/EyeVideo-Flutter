@@ -4,12 +4,11 @@ import 'package:eye_video/bizmodule/main/community/blocs/community_event.dart';
 import 'package:eye_video/bizmodule/main/community/blocs/community_state.dart';
 import 'package:eye_video/bizmodule/main/community/extension/ext_community.dart';
 import 'package:eye_video/bizmodule/main/community/widget/ugc_item.dart';
-import 'package:eye_video/framework/extension/screen_ruler.dart';
+import 'package:eye_video/framework/extension/context_extension.dart';
 import 'package:eye_video/framework/uikit/carousel/carousel_slider.dart';
 import 'package:eye_video/framework/uikit/refresher/indicator/material/material_footer.dart';
 import 'package:eye_video/framework/uikit/refresher/indicator/material/material_header.dart';
 import 'package:eye_video/framework/uikit/refresher/pretty_refresher.dart';
-import 'package:eye_video/framework/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +17,6 @@ class CommunityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenRuler.init();
     return BlocBuilder<CommunityBloc, CommunityState>(
       builder: (context, state) {
         if (state is StateRequestLoading) {
@@ -100,8 +98,6 @@ class CommunityPage extends StatelessWidget {
         content: itemData.data.content.data,
       );
     }
-    return Center(
-      child: Text('其他widget待开发'),
-    );
+    return Container();
   }
 }

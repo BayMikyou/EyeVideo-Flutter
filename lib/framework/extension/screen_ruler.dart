@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class ScreenRuler {
   static ScreenRuler _instance;
@@ -22,20 +22,21 @@ class ScreenRuler {
   static double _bottomBarHeight;
   static double _textScaleFactor;
 
-  static void init(
-      {num width = defaultWidth,
-      bool allowFontScaling = false}) {
+  static void init(BuildContext context,
+      {num width = defaultWidth, bool allowFontScaling = false}) {
     if (_instance == null) {
       _instance = ScreenRuler._internal();
     }
     _instance.uiWidthPx = width;
     _instance.allowFontScaling = allowFontScaling;
-    _pixelRatio = window.devicePixelRatio;
-    _screenWidth = window.physicalSize.width;
-    _screenHeight = window.physicalSize.height;
-    _statusBarHeight = window.padding.top;
-    _bottomBarHeight = window.padding.bottom;
-    _textScaleFactor = window.textScaleFactor;
+
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+    _pixelRatio = mediaQuery.devicePixelRatio;
+    _screenWidth = mediaQuery.size.width;
+    _screenHeight = mediaQuery.size.height;
+    _statusBarHeight = mediaQuery.padding.top;
+    _bottomBarHeight = mediaQuery.padding.bottom;
+    _textScaleFactor = mediaQuery.textScaleFactor;
   }
 
   // 每个逻辑像素的字体像素数，字体的缩放比例
@@ -45,34 +46,34 @@ class ScreenRuler {
   static double get pixelRatio => _pixelRatio;
 
   // 当前设备宽度 dp
-  static double get screenWidth => _screenWidth / _pixelRatio;
+  static double get screenWidth => _screenWidth;
 
   // 当前设备高度 dp
-  static double get screenHeight => _screenHeight / _pixelRatio;
+  static double get screenHeight => _screenHeight;
 
   // 当前设备宽度 px
-  static double get screenWidthPx => _screenWidth;
+  static double get screenWidthPx => _screenWidth * _pixelRatio;
 
   // 当前设备高度 px
-  static double get screenHeightPx => _screenHeight;
+  static double get screenHeightPx => _screenHeight * _pixelRatio;
 
   // 状态栏高度 dp 刘海屏会更高
-  static double get statusBarHeight => _statusBarHeight / _pixelRatio;
+  static double get statusBarHeight => _statusBarHeight;
 
   // 状态栏高度 dp 刘海屏会更高
-  static double get statusBarHeightPx => _statusBarHeight;
+  static double get statusBarHeightPx => _statusBarHeight * _pixelRatio;
 
   // 底部安全区距离 dp
   static double get bottomBarHeight => _bottomBarHeight;
 
   // 实际的dp与UI设计px的比例
-  double get scaleWidth => screenWidth / uiWidthPx;
-
-  double get scaleText => scaleWidth;
+  double get scale => screenWidth == 0 ? 0.5 : screenWidth / uiWidthPx;
 
   //根据UI设计的设备尺寸适配
-  num compactDimenSize(num size) => size * scaleWidth;
+  num compactDimenSize(num size) => size * scale;
 
   //根据UI设计的设备字体大小适配
-  num compactScreenFontSize(num fontSize) => allowFontScaling ? (fontSize * scaleText) : ((fontSize * scaleText) / _textScaleFactor);
+  num compactScreenFontSize(num fontSize) => allowFontScaling
+      ? (fontSize * scale)
+      : ((fontSize * scale) / _textScaleFactor);
 }
