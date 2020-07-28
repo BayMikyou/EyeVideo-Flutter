@@ -82,8 +82,5 @@ flutter:
     - family: Oswald-Regular
       fonts:
         - asset: assets/fonts/Oswald-Regular.otf
-    - family: SourceSerifPro-Regular
-      fonts:
-        - asset: assets/fonts/SourceSerifPro-Regular.otf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
