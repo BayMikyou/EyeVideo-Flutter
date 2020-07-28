@@ -14,6 +14,7 @@ import 'package:eye_video/bizmodule/main/thiz/blocs/main_bloc.dart';
 import 'package:eye_video/bizmodule/main/thiz/repositories/mock/mock_main_repository.dart';
 import 'package:eye_video/bizmodule/main/thiz/widgets/drawer_widget.dart';
 import 'package:eye_video/framework/extension/screen_ruler.dart';
+import 'package:eye_video/framework/extension/size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -100,12 +101,12 @@ class MainPage extends StatelessWidget {
       tabs: tabs.map((textStr) => Tab(text: textStr)).toList(),
       labelStyle: TextStyle(
         color: Color(0xff333333),
-        fontSize: 15,
+        fontSize: 30.sp,
         fontFamily: 'NotoSansHans-Medium',
       ),
       unselectedLabelStyle: TextStyle(
         color: Color(0xff666666),
-        fontSize: 15,
+        fontSize: 30.sp,
         fontFamily: 'NotoSansHans-Regular',
       ),
     );

@@ -2,6 +2,7 @@ import 'package:eye_video/bizmodule/main/thiz/blocs/main_bloc.dart';
 import 'package:eye_video/bizmodule/main/thiz/blocs/main_state.dart';
 import 'package:eye_video/bizmodule/main/thiz/model/drawer_configs.dart';
 import 'package:eye_video/bizmodule/main/thiz/model/user_model.dart';
+import 'package:eye_video/framework/extension/size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -42,15 +43,11 @@ Widget buildDrawerHeader(UserModel userModel) {
   return UserAccountsDrawerHeader(
     accountName: Text(
       userModel.username,
-      style: TextStyle(
-        color: Colors.white,
-      ),
+      style: TextStyle(color: Colors.white, fontSize: 28.sp),
     ),
     accountEmail: Text(
       userModel.introduce,
-      style: TextStyle(
-        color: Colors.white,
-      ),
+      style: TextStyle(color: Colors.white, fontSize: 24.sp),
     ),
     currentAccountPicture: CircleAvatar(
       backgroundImage: NetworkImage(userModel.avatarUrl),
@@ -73,9 +70,9 @@ Widget buildExtendWidget(
     children: extendConfigs.map((config) {
       return GestureDetector(
         child: Tab(
-          iconMargin: const EdgeInsets.only(bottom: 6),
-          icon: Image.asset(config.assetIcon, width: 25, height: 25),
-          child: Text(config.text, style: TextStyle(fontSize: 12)),
+          iconMargin: EdgeInsets.only(bottom: 12.dp),
+          icon: Image.asset(config.assetIcon, width: 50.dp, height: 50.dp),
+          child: Text(config.text, style: TextStyle(fontSize: 26.sp)),
         ),
         onTap: () => Navigator.pop(context),
       );
@@ -87,13 +84,13 @@ List<Widget> buildListTiles(BuildContext context, List<DrawerConfig> configs) {
   return configs.map((config) {
     if (config.isDivider) {
       return Divider(
-        height: 1,
+        height: 1.dp,
         color: Colors.grey,
       );
     } else {
       return ListTile(
         leading: Icon(config.iconData),
-        title: Text(config.text),
+        title: Text(config.text, style: TextStyle(fontSize: 26.sp) ),
         onTap: () => Navigator.pop(context),
       );
     }
