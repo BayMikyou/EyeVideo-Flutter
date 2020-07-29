@@ -7,6 +7,7 @@ import 'package:eye_video/bizmodule/main/discovery/model/discovery_model.dart';
 import 'package:eye_video/bizmodule/main/discovery/extension/ext_discovery.dart';
 import 'package:eye_video/bizmodule/main/discovery/widgets/column_card_items.dart';
 import 'package:eye_video/bizmodule/main/discovery/widgets/hot_category_items.dart';
+import 'package:eye_video/framework/uikit/carousel/carousel_option.dart';
 import 'package:eye_video/framework/uikit/carousel/carousel_slider.dart';
 import 'package:eye_video/framework/uikit/scrollview/overscroll_behavior.dart';
 import 'package:flutter/material.dart';
@@ -51,12 +52,12 @@ class DiscoveryPage extends StatelessWidget {
     Discovery itemData = state.discoveryModel.discoveryList[pos];
     if (itemData.isHorizontalScrollCard) {
       return CarouselSlider(
-        options: CarouselOptions(
+        options: CarouselOption(
           autoPlay: true,
           aspectRatio: 2.0,
           viewportFraction: 0.95,
           autoPlayInterval: Duration(seconds: 5),
-          enlargeCenterPage: true,
+          isEnableLargeCenterPage: true,
         ),
         items: itemData.data.discoveryList
             .map((discovery) => CoverImageItem(

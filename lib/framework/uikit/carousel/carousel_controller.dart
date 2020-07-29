@@ -1,28 +1,28 @@
 import 'dart:async';
 
+import 'package:eye_video/framework/uikit/carousel/carousel_option.dart';
+import 'package:eye_video/framework/uikit/carousel/carousel_state.dart';
+import 'package:eye_video/framework/uikit/carousel/utils.dart';
 import 'package:flutter/material.dart';
 
-import 'carousel_options.dart';
-import 'carousel_state.dart';
-import 'utils.dart';
 
-abstract class CarouselController {
+abstract class AbsCarouselController {
   bool get ready;
 
   Future<Null> get onReady;
 
   void nextPage({Duration duration, Curve curve});
 
-  void previousPage({Duration duration, Curve curve});
+  void prevPage({Duration duration, Curve curve});
 
-  void jumpToPage(int page);
+  void seekToPage(int page);
 
-  void animateToPage(int page, {Duration duration, Curve curve});
+  void seekToPageAnim(int page, {Duration duration, Curve curve});
 
-  factory CarouselController() => CarouselControllerImpl();
+  factory AbsCarouselController() => CarouselController();
 }
 
-class CarouselControllerImpl implements CarouselController {
+class CarouselController implements AbsCarouselController {
   final Completer<Null> _readyCompleter = Completer<Null>();
 
   CarouselState _state;
@@ -43,10 +43,7 @@ class CarouselControllerImpl implements CarouselController {
   @override
   Future<Null> get onReady => _readyCompleter.future;
 
-  /// Animates the controlled [CarouselSlider] to the next page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
+  @override
   Future<void> nextPage(
       {Duration duration = const Duration(milliseconds: 300),
       Curve curve = Curves.linear}) async {
@@ -61,11 +58,8 @@ class CarouselControllerImpl implements CarouselController {
     }
   }
 
-  /// Animates the controlled [CarouselSlider] to the previous page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
-  Future<void> previousPage(
+  @override
+  Future<void> prevPage(
       {Duration duration = const Duration(milliseconds: 300),
       Curve curve = Curves.linear}) async {
     final bool isNeedResetTimer = _state.options.pauseAutoPlayOnManualNavigate;
@@ -79,24 +73,18 @@ class CarouselControllerImpl implements CarouselController {
     }
   }
 
-  /// Changes which page is displayed in the controlled [CarouselSlider].
-  ///
-  /// Jumps the page position from its current value to the given value,
-  /// without animation, and without checking if the new value is in range.
-  void jumpToPage(int page) {
+  @override
+  void seekToPage(int page) {
     final index = getRealIndex(_state.pageController.page.toInt(),
-        _state.realPage - _state.initialPage, _state.itemCount);
+        _state.realIndex - _state.initIndex, _state.itemCount);
 
     _setModeController();
     final int pageToJump = _state.pageController.page.toInt() + page - index;
     return _state.pageController.jumpToPage(pageToJump);
   }
 
-  /// Animates the controlled [CarouselSlider] from the current page to the given page.
-  ///
-  /// The animation lasts for the given duration and follows the given curve.
-  /// The returned [Future] resolves when the animation completes.
-  Future<void> animateToPage(int page,
+  @override
+  Future<void> seekToPageAnim(int page,
       {Duration duration = const Duration(milliseconds: 300),
       Curve curve = Curves.linear}) async {
     final bool isNeedResetTimer = _state.options.pauseAutoPlayOnManualNavigate;
@@ -104,7 +92,7 @@ class CarouselControllerImpl implements CarouselController {
       _state.onResetTimer();
     }
     final index = getRealIndex(_state.pageController.page.toInt(),
-        _state.realPage - _state.initialPage, _state.itemCount);
+        _state.realIndex - _state.initIndex, _state.itemCount);
     _setModeController();
     await _state.pageController.animateToPage(
         _state.pageController.page.toInt() + page - index,

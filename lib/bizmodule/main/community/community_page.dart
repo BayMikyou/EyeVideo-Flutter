@@ -5,6 +5,7 @@ import 'package:eye_video/bizmodule/main/community/blocs/community_state.dart';
 import 'package:eye_video/bizmodule/main/community/extension/ext_community.dart';
 import 'package:eye_video/bizmodule/main/community/widget/ugc_item.dart';
 import 'package:eye_video/framework/extension/context_extension.dart';
+import 'package:eye_video/framework/uikit/carousel/carousel_option.dart';
 import 'package:eye_video/framework/uikit/carousel/carousel_slider.dart';
 import 'package:eye_video/framework/uikit/refresher/indicator/material/material_footer.dart';
 import 'package:eye_video/framework/uikit/refresher/indicator/material/material_header.dart';
@@ -78,12 +79,12 @@ class CommunityPage extends StatelessWidget {
     var itemData = itemList[pos];
     if (itemData.isHorizontalScrollCard) {
       return CarouselSlider(
-        options: CarouselOptions(
+        options: CarouselOption(
           autoPlay: true,
           aspectRatio: 2.0,
           viewportFraction: 0.95,
           autoPlayInterval: Duration(seconds: 5),
-          enlargeCenterPage: true,
+          isEnableLargeCenterPage: true,
         ),
         items: itemData.data.communityList
             .map((discovery) => CoverImageItem(
