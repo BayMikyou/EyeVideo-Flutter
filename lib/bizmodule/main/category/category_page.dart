@@ -1,6 +1,7 @@
 import 'package:eye_video/bizmodule/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:eye_video/framework/extension/image_compress.dart';
 
 class CategoryPage extends StatelessWidget {
   @override
@@ -26,7 +27,7 @@ class CategoryPage extends StatelessWidget {
           mainAxisSpacing: 3,
 
           children: state.categoryModel.categoryList.map((itemData) {
-            var coverImage = itemData.item.image;
+            var coverImage = itemData.item.image.compress_value();
             String title = itemData.item.title;
             return Stack(
               alignment: Alignment.center,

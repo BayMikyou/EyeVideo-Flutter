@@ -4,6 +4,7 @@ import 'package:eye_video/bizmodule/main/community/model/community_model.dart';
 import 'package:eye_video/framework/extension/screen_ruler.dart';
 import 'package:eye_video/framework/uikit/layout/nine_layout.dart';
 import 'package:flutter/material.dart';
+import 'package:eye_video/framework/extension/image_compress.dart';
 
 class UgcFollowItem extends StatelessWidget {
   final HeaderData header;
@@ -17,7 +18,7 @@ class UgcFollowItem extends StatelessWidget {
 
     var headerItem = FollowListHead(
       title: header.issuerName,
-      avatarUrl: header.icon,
+      avatarUrl: header.icon.compress_value(),
       description: "${prettyTime(content.releaseTime)}发布",
     );
     children.add(headerItem);
@@ -46,7 +47,7 @@ class UgcFollowItem extends StatelessWidget {
             return Container(
                 decoration: ShapeDecoration(
               image: DecorationImage(
-                image: NetworkImage(url),
+                image: NetworkImage(url.compress_value()),
                 fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(

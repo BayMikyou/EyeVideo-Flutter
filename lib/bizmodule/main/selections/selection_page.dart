@@ -11,6 +11,7 @@ import 'package:eye_video/framework/uikit/refresher/indicator/material/material_
 import 'package:eye_video/framework/uikit/refresher/pretty_refresher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:eye_video/framework/extension/image_compress.dart';
 
 class SelectionPage extends StatelessWidget {
   final RefreshController _controller = RefreshController();
@@ -67,7 +68,7 @@ class SelectionPage extends StatelessWidget {
     var itemData = state.selections[pos];
     if (itemData.isFollowCard) {
       return FollowItemVideo(
-        coverUrl: itemData.data.content.data.cover.detail,
+        coverUrl: itemData.data.content.data.cover.detail.compress_value(),
         duration: itemData.data.content.data.duration,
         avatarUrl: itemData.data.header.icon,
         title: itemData.data.header.title,
@@ -81,7 +82,7 @@ class SelectionPage extends StatelessWidget {
       return SmallItemVideo(
         title: itemData.data.title,
         tag: itemData.data.tags.take(2).map((e) => "#${e.name}").join(" "),
-        coverUrl: itemData.data.cover.detail,
+        coverUrl: itemData.data.cover.detail.compress_value(),
         duration: itemData.data.duration,
       );
     } else if (itemData.isHeaderCard) {

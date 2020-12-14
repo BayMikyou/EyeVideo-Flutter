@@ -34,7 +34,6 @@ dependencies:
   dio_cookie_manager: ^1.0.0
   json_annotation: ^3.0.1
   equatable: ^1.2.1
-  shared_preferences: ^0.5.8
   flutter_easyrefresh: ^2.1.1
   dwds: ^5.0.0
 

@@ -1,6 +1,7 @@
 import 'package:eye_video/bizmodule/main/thiz/model/drawer_configs.dart';
 import 'package:eye_video/bizmodule/main/thiz/model/user_model.dart';
 import 'package:eye_video/bizmodule/main/thiz/repositories/main_repository.dart';
+import 'package:eye_video/framework/extension/image_compress.dart';
 import 'package:flutter/material.dart';
 
 class MockMainRepository extends MainRepository {
@@ -45,10 +46,8 @@ class MockMainRepository extends MainRepository {
     UserModel user = UserModel(
         username: 'Flutter',
         introduce: '专注一下',
-        coverUrl:
-            'http://img.kaiyanapp.com/8a93b20e5eaf3feef60eef882d29261b.jpeg?imageMogr2/quality/60/format/jpg',
-        avatarUrl:
-            'https://upload.jianshu.io/users/upload_avatars/3992846/618951f1-59e2-4309-a768-9bc0a15aa907.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240');
+        coverUrl: 'http://img.kaiyanapp.com/8a93b20e5eaf3feef60eef882d29261b.jpeg?imageMogr2/quality/60/format/jpg'.compress_value(),
+        avatarUrl: 'https://upload.jianshu.io/users/upload_avatars/3992846/618951f1-59e2-4309-a768-9bc0a15aa907.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240');
 
     return Future.value(user);
   }

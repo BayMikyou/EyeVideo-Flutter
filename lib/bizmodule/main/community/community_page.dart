@@ -12,6 +12,7 @@ import 'package:eye_video/framework/uikit/refresher/indicator/material/material_
 import 'package:eye_video/framework/uikit/refresher/pretty_refresher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:eye_video/framework/extension/image_compress.dart';
 
 class CommunityPage extends StatelessWidget {
   final RefreshController _controller = RefreshController();
@@ -88,7 +89,7 @@ class CommunityPage extends StatelessWidget {
         ),
         items: itemData.data.communityList
             .map((discovery) => CoverImageItem(
-                  coverUrl: discovery.data.image,
+                  coverUrl: discovery.data.image.compress_value(),
                 ))
             .toList(),
       );

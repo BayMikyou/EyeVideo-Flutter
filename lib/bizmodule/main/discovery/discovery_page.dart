@@ -12,6 +12,7 @@ import 'package:eye_video/framework/uikit/carousel/carousel_slider.dart';
 import 'package:eye_video/framework/uikit/scrollview/overscroll_behavior.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:eye_video/framework/extension/image_compress.dart';
 
 class DiscoveryPage extends StatelessWidget {
   @override
@@ -61,7 +62,7 @@ class DiscoveryPage extends StatelessWidget {
         ),
         items: itemData.data.discoveryList
             .map((discovery) => CoverImageItem(
-                  coverUrl: discovery.data.image,
+                  coverUrl: discovery.data.image.compress_value(),
                 ))
             .toList(),
       );
@@ -98,7 +99,7 @@ class DiscoveryPage extends StatelessWidget {
         padding: EdgeInsets.only(left: 10, right: 10),
         child: FollowListHead(
           title: itemData.data.title,
-          avatarUrl: itemData.data.icon,
+          avatarUrl: itemData.data.icon.compress_value(),
           description: itemData.data.description,
         ),
       );
