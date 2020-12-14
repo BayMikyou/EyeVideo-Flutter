@@ -19,20 +19,14 @@ extension ImageCompress on String {
         this.contains(".jpg") ||
         this.contains(".gif");
 
-    print('-----original url: $this');
     if (isHttpUrl && isImageRes) {
       Uri uri = Uri.parse(this);
-//      String compressUrl = "http://${uri.host}${uri.path}?imageMogr2/quality/$COMPRESS_LEVEL_6!/format/jpg";
-      String compressUrl;
+      String compressUrl = "http://${uri.host}${uri.path}?imageMogr2/thumbnail";
       if (!this.contains("?imageMogr2/quality")) {
-        compressUrl =
-            "http://${uri.host}${uri.path}?imageMogr2/thumbnail/!${COMPRESS_LEVEL_3}p";
+        compressUrl = "$compressUrl/!${COMPRESS_LEVEL_3}p";
       } else {
-        compressUrl =
-            "http://${uri.host}${uri.path}?imageMogr2/thumbnail/!${COMPRESS_LEVEL_5}p";
+        compressUrl = "$compressUrl/!${COMPRESS_LEVEL_5}p";
       }
-      print('-----compress url: $compressUrl');
-      return compressUrl;
       return compressUrl;
     }
     return this;
