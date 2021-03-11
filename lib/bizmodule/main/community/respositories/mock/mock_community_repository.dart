@@ -13,7 +13,7 @@ class MockCommunityRepository extends CommunityRepository {
         reqParams = Uri.parse(nextPageUrl).queryParameters;
       }
       var resData = await PrettyHttp.get(
-        "api/v6/community/tab/rec",
+        "api/community/recommend/list",
         reqParams: reqParams,
       );
       return Future.value(CommunityModel.fromJson(resData));

@@ -11,7 +11,7 @@ class PrettyHttp {
   static const String HEAD = 'head';
   static const String PATCH = 'patch';
 
-  static const String BASE_URL = "http://baobab.kaiyanapp.com/";
+  static const String BASE_URL = "http://www.youkmi.cn:8888/";
 
   static LogInterceptor logInterceptor = LogInterceptor();
 
@@ -38,12 +38,12 @@ class PrettyHttp {
         'last_channel': 'eyepetizer_googleplay_market'
       };
 
-      if (headers == null) {
-        headers = {'User-Agent': '', 'Access-Control-Allow-Origin': true};
-      }
+//      if (headers == null) {
+//        headers = {'User-Agent': '', 'Access-Control-Allow-Origin': true};
+//      }
 
       BaseOptions options = DioHttpClient.createOptions(baseUrl,
-          headers: headers, queryParameters: commonQueryParameters);
+          headers: headers);
 
       var dioClient = DioHttpClient.getInstance().getClient(baseUrl,
           newOptions: options, interceptors: [logInterceptor, cookieManager]);

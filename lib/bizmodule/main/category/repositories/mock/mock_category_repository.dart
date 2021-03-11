@@ -5,7 +5,7 @@ import 'package:eye_video/framework/network/pretty_http.dart';
 class MockCategoryRepository extends CategoryRepository {
   @override
   Future<CategoryModel> fetchCategories() async {
-    var resData = await PrettyHttp.get('api/v4/categories/all', baseUrl: 'http://baobab.kaiyanapp.com/');
+    var resData = await PrettyHttp.get('api/categories/list');
     return Future.value(CategoryModel.fromJson(resData));
   }
 }

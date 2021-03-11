@@ -12,7 +12,7 @@ class MockSelectionRepository extends SelectionRepository {
       reqParams = Uri.parse(nextPageUrl).queryParameters;
     }
     var resData = await PrettyHttp.get(
-      "api/v5/index/tab/allRec",
+      "api/selection/recommend/list",
       reqParams: reqParams,
     );
 

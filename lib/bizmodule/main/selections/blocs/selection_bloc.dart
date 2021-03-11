@@ -28,8 +28,7 @@ class SelectionBloc extends Bloc<SelectionEvent, SelectionState> {
           var selectionModel = await selectionRepository.fetchSelections();
           nextPageUrl = selectionModel.nextPageUrl ?? "";
           mSelections.addAll(selectionModel.selectionList);
-          if (mSelections.isNotEmpty &&
-              mSelections.first.isSquareCard) {
+          if (mSelections.isNotEmpty && mSelections.first.isSquareCard) {
             var selectionFirst = mSelections.first;
             mSelections.add(
               Selection(
@@ -92,6 +91,7 @@ class SelectionBloc extends Bloc<SelectionEvent, SelectionState> {
               List.of(mSelections), _hasNextPage(nextPageUrl));
         }
       } catch (e) {
+        print('request error: ${e.toString()}');
         yield StateRequestFailure();
       }
     }
