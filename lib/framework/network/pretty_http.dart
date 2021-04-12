@@ -11,7 +11,7 @@ class PrettyHttp {
   static const String HEAD = 'head';
   static const String PATCH = 'patch';
 
-  static const String BASE_URL = "http://www.youkmi.cn:8888/";
+  static const String BASE_URL = "http://www.youkmi.cn:7300/";
 
   static LogInterceptor logInterceptor = LogInterceptor();
 
