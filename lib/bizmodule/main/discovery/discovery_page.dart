@@ -61,6 +61,10 @@ class DiscoveryPage extends StatelessWidget {
           isEnableLargeCenterPage: true,
         ),
         items: itemData.data.discoveryList
+            .where((discovery) =>
+                discovery.data != null &&
+                discovery.data.image != null &&
+                discovery.data.image.isNotEmpty)
             .map((discovery) => CoverImageItem(
                   coverUrl: discovery.data.image.compress_value(),
                 ))
@@ -104,8 +108,6 @@ class DiscoveryPage extends StatelessWidget {
         ),
       );
     }
-    return Center(
-      child: Text('其他widget待开发'),
-    );
+    return Container();
   }
 }

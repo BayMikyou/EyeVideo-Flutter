@@ -24,6 +24,6 @@ class OverScrollBehavior extends ScrollBehavior {
           color: Theme.of(context).accentColor,
         );
     }
-    return null;
+    return child;
   }
 }
