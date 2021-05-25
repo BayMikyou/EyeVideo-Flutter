@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:eye_video/framework/network/cookie/pretty_cookie.dart';
 import 'package:eye_video/framework/network/dio_client.dart';
+import 'package:eye_video/framework/network/interceptor/log_interceptor.dart';
+
 
 class PrettyHttp {
   static const String GET = 'get';
@@ -13,7 +15,7 @@ class PrettyHttp {
 
   static const String BASE_URL = "http://www.youkmi.cn:7300/";
 
-  static LogInterceptor logInterceptor = LogInterceptor();
+  static Interceptor logInterceptor = PrettyLogInterceptor();
 
   static CookieManager cookieManager = CookieManager(CookieJarImpl());
 
@@ -26,27 +28,11 @@ class PrettyHttp {
     reqParams = reqParams ?? {};
 
     try {
-      var commonQueryParameters = <String, String>{
-        'udid': 'e4c4417d091e43239f465436bd23bba64a4c947c',
-        'deviceModel': 'OnePlus7Pro',
-        'system_version_code': '10',
-        'vc': '461',
-        'vn': '5.1',
-        'isOldUser': 'true',
-        'size': '1080X1920',
-        'first_channel': 'eyepetizer_googleplay_market',
-        'last_channel': 'eyepetizer_googleplay_market'
-      };
-
-//      if (headers == null) {
-//        headers = {'User-Agent': '', 'Access-Control-Allow-Origin': true};
-//      }
-
       BaseOptions options = DioHttpClient.createOptions(baseUrl,
           headers: headers);
 
       var dioClient = DioHttpClient.getInstance().getClient(baseUrl,
-          newOptions: options, interceptors: [logInterceptor, cookieManager]);
+          newOptions: options, interceptors: []);
       Response<Map<String, dynamic>> response;
 
       switch (method) {

@@ -8,8 +8,10 @@ import 'package:eye_video/bizmodule/main/discovery/blocs/discovery_bloc.dart';
 import 'package:eye_video/bizmodule/main/discovery/discovery_page.dart';
 import 'package:eye_video/bizmodule/main/discovery/respositories/mock/mock_discovery_repository.dart';
 import 'package:eye_video/bizmodule/main/selections/blocs/selection_bloc.dart';
+import 'package:eye_video/bizmodule/main/selections/blocs/ugc/ugc_bloc.dart';
 import 'package:eye_video/bizmodule/main/selections/respositories/mock/mock_selection_repository.dart';
-import 'package:eye_video/bizmodule/main/selections/selection_page.dart';
+import 'package:eye_video/bizmodule/main/selections/respositories/mock/mock_ugc_repository.dart';
+import 'package:eye_video/bizmodule/main/selections/ugc_page.dart';
 import 'package:eye_video/bizmodule/main/thiz/blocs/main_bloc.dart';
 import 'package:eye_video/bizmodule/main/thiz/repositories/mock/mock_main_repository.dart';
 import 'package:eye_video/bizmodule/main/thiz/widgets/drawer_widget.dart';
@@ -47,9 +49,9 @@ class MainPage extends StatelessWidget {
               case 0:
                 {
                   return BlocProvider(
-                    create: (context) => SelectionBloc(
-                        selectionRepository: MockSelectionRepository()),
-                    child: SelectionPage(),
+                    create: (context) => UgcBloc(
+                        ugcRepository: MockUgcRepository()),
+                    child: UgcPage(),
                   );
                 }
                 break;
